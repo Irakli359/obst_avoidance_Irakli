@@ -32,7 +32,7 @@ class Server:
     	angular_z = 0
     	msg = Twist()
     	d = 1
-	average_rotation_speed = 0.25
+	average_rotation = 0.2
     	if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d:
 
         	state_description = 'case 1 - nothing in front'
@@ -41,53 +41,62 @@ class Server:
     	elif regions['front'] < d and regions['fleft'] > d and regions['fright'] > d :
         	state_description = 'case 2 - front'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > 0 and self.angular_z <0.3):
+        	if(self.angular_z > 0 and self.angular_z <average_rotation):
 			angular_z = self.angular_z +0.15
 		else:
-			angular_z = average_rotation_speed
+			angular_z = average_rotation 
+        	#self.linear_x  = 0
         	self.angular_z= 0
     	elif regions['front'] > d and regions['fleft'] > d and regions['fright'] < d :
 		state_description = 'case 3 - fright'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > 0 and self.angular_z <0.3):
+        	if(self.angular_z > 0 and self.angular_z <0.1):
 			angular_z = self.angular_z +0.15
 		else:
-			angular_z = average_rotation_speed
+			angular_z = average_rotation 
+        	#self.linear_x  = 0
         	self.angular_z= 0
     	elif regions['front'] > d  and regions['fleft'] < d and regions['fright'] > d :
         	state_description = 'case 4 - fleft'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > -0.3 and self.angular_z <0):
+        	if(self.angular_z > -0.1 and self.angular_z <0):
 			angular_z = self.angular_z -0.15
 		else:
-			angular_z = average_rotation_speed*(-1)
+			angular_z = average_rotation*(-1) 
+     
+        	#self.linear_x  = 0
         	self.angular_z= 0
 	
     	elif regions['front'] < d  and regions['fleft'] > d and regions['fright'] < d :
         	state_description = 'case 5 - front and fright'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > 0 and self.angular_z <0.3):
+        	if(self.angular_z > 0 and self.angular_z <0.1):
 			angular_z = self.angular_z +0.15
 		else:
-			angular_z = average_rotation_speed 
+			angular_z = average_rotation 
+        	#self.linear_x  = 0
         	self.angular_z= 0
     	elif regions['front'] < d and regions['fleft'] < d and regions['fright'] > d :
         	state_description = 'case 6 - front and fleft'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > -0.3 and self.angular_z <0):
+        	if(self.angular_z > -0.1 and self.angular_z <0):
 			angular_z = self.angular_z -0.15
 		else:
-			angular_z = average_rotation_speed*(-1)
+			angular_z = average_rotation*(-1) 
+        	#self.linear_x  = 0
         	self.angular_z= 0
 	
     	elif regions['front'] < d  and regions['fleft'] < d and regions['fright'] < d :
         	state_description = 'case 7 - front and fleft and fright'
         	linear_x= self.linear_x/2
-        	angular_z = average_rotation_speed + 0.12
+                if(self.angular_z > 0.1 and self.angular_z <0.2):
+        		angular_z = self.angular_z + 0.15
+		else:
+			angular_z = average_rotation + 0.08
         	self.angular_z= 0
     	elif regions['front'] > d and regions['fleft'] < d and regions['fright'] < d :
         	state_description = 'case 8 - fleft and fright'
-        	linear_x= self.linear_x/2
+        	linear_x= self.linear_x
         	self.angular_z= 0
     	else:
         	state_description = 'unknown case'
@@ -108,4 +117,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
