@@ -44,25 +44,25 @@ class Server:
         	if(self.angular_z > 0 and self.angular_z <0.1):
 			angular_z = self.angular_z +0.15
 		else:
-			angular_z = min(abs(0.4  - abs(self.angular_z))/2,0.2) #rotate left by 2 times less user intput
+			angular_z = min(abs(1  - abs(self.angular_z))/2,0.3) 
         	#self.linear_x  = 0
         	self.angular_z= 0
     	elif regions['front'] > d and regions['fleft'] > d and regions['fright'] < d :
 		state_description = 'case 3 - fright'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > 0 and self.angular_z <0.1):
+        	if(self.angular_z > 0 and self.angular_z <0.3):
 			angular_z = self.angular_z +0.15
 		else:
-			angular_z = min(abs(0.4  - abs(self.angular_z))/2,0.15) #rotate left by 2 times less user intput
+			angular_z = min(abs(1 - abs(self.angular_z))/2,0.3) 
         	#self.linear_x  = 0
         	self.angular_z= 0
     	elif regions['front'] > d  and regions['fleft'] < d and regions['fright'] > d :
         	state_description = 'case 4 - fleft'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > -0.1 and self.angular_z <0):
+        	if(self.angular_z > -0.3 and self.angular_z <0):
 			angular_z = self.angular_z -0.15
 		else:
-			angular_z = min(abs(0.4  - abs(self.angular_z))/2,0.15)*(-1) #rotate left by 2 times less user intput
+			angular_z = min(abs(1 - abs(self.angular_z))/2,0.3)*(-1) 
      
         	#self.linear_x  = 0
         	self.angular_z= 0
@@ -73,29 +73,28 @@ class Server:
         	if(self.angular_z > 0 and self.angular_z <0.1):
 			angular_z = self.angular_z +0.15
 		else:
-			angular_z = min(abs(0.4  - abs(self.angular_z))/2,0.2) #rotate left by 2 times less user intput
+			angular_z = min(abs(1 - abs(self.angular_z))/2,0.3) 
         	#self.linear_x  = 0
         	self.angular_z= 0
     	elif regions['front'] < d and regions['fleft'] < d and regions['fright'] > d :
         	state_description = 'case 6 - front and fleft'
         	linear_x= self.linear_x/2
-        	if(self.angular_z > -0.1 and self.angular_z <0):
+        	if(self.angular_z > -0.3 and self.angular_z <0):
 			angular_z = self.angular_z -0.15
 		else:
-			angular_z = min(abs(0.4  - abs(self.angular_z))/2,0.15)*(-1) #rotate left by 2 times less user intput
+			angular_z = min(abs(1  - abs(self.angular_z))/2,0.3)*(-1)
         	#self.linear_x  = 0
         	self.angular_z= 0
 	
     	elif regions['front'] < d  and regions['fleft'] < d and regions['fright'] < d :
         	state_description = 'case 7 - front and fleft and fright'
         	linear_x= self.linear_x/2
-        	angular_z = min(abs(0.5  - abs(self.angular_z))/2,0.3) #rotate left by 2 times less user intput
+        	angular_z = min(abs(1  - abs(self.angular_z))/2,0.3) 
         	#self.linear_x  = 0
         	self.angular_z= 0
     	elif regions['front'] > d and regions['fleft'] < d and regions['fright'] < d :
         	state_description = 'case 8 - fleft and fright'
-        	linear_x= self.linear_x
-        	#angular_z = abs(self.angular_z)/2 #rotate left by 2 times less user intput
+        	linear_x= self.linear_x/2
         	#self.linear_x  = 0
         	self.angular_z= 0
     	else:
@@ -117,4 +116,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
